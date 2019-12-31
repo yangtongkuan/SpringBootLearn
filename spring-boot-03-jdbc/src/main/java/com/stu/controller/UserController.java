@@ -3,6 +3,7 @@ package com.stu.controller;
 import com.stu.entity.UserInfo;
 import com.stu.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -30,11 +31,17 @@ public class UserController {
     }
 
     @RequestMapping("del")
+    @Transactional // 使用事务
     public Object del(@RequestParam(name = "user_id", required = true) Long id) {
         if (id <= 0) {
             return "删除失败";
         }
-        return userService.delete(id) > 0 ? "成功" : "失败";
+//        return userService.delete(id) > 0 ? "成功" : "失败";
+        // 测试事务
+        userService.delete(id);
+        int a = 1 / 0;
+        //
+        return "成功";
     }
 
     @RequestMapping("update")
@@ -46,10 +53,15 @@ public class UserController {
     }
 
     @RequestMapping("find")
-    public Object update(@RequestParam(name = "user_id", required = true) Long id) {
+    public Object find(@RequestParam(name = "user_id", required = true) Long id) {
         if (id <= 0) {
             return "id不能为空";
         }
         return userService.findById(id);
+    }
+
+    @RequestMapping("find/name")
+    public Object find_name(@RequestParam(name = "name", required = true) String name) {
+        return userService.findByName(name);
     }
 }

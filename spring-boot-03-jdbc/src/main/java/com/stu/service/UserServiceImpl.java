@@ -5,6 +5,8 @@ import com.stu.entity.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  *
@@ -49,5 +51,13 @@ public class UserServiceImpl implements IUserService {
             return userDao.findById(id);
         }
         return null;
+    }
+
+    @Override
+    public List<UserInfo> findByName(String name) {
+        if (name == null) {
+            name = "";
+        }
+        return userDao.findByName(name);
     }
 }

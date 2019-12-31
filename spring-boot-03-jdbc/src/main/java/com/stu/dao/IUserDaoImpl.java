@@ -46,4 +46,9 @@ public class IUserDaoImpl implements IUserDao {
         }
         return null;
     }
+
+    @Override
+    public List<UserInfo> findByName(String name) {
+        return jdbcTemplate.query("select * from userInfo where name like ? ", new Object[]{"%" + name + "%"}, new BeanPropertyRowMapper(UserInfo.class));
+    }
 }

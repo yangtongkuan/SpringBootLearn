@@ -2,6 +2,8 @@ package com.stu.dao;
 
 import com.stu.entity.UserInfo;
 
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  *
@@ -19,4 +21,6 @@ public interface IUserDao {
     int delete(Long id);
 
     UserInfo findById(Long id);
+
+    List<UserInfo> findByName(String name);
 }
