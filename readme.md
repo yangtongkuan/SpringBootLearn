@@ -3,9 +3,9 @@
 ### 说明
     @version:1.5.3.RELEASE
     @data: 2019年12月30日21:04:18
-### 1.SpringBoot 入门-hello word
+### 一.SpringBoot 入门-hello word 
 
-### 2.SpringBoot 入门-config 配置文件详解
+### 二.SpringBoot 入门-config 配置文件详解
     
 ##### 1.注入data说明  
 
@@ -33,9 +33,15 @@
     1. 在resources下添加banner.tet 即可
     2. 在application.properties中指定banner的路径 banner.location=classpath:CustomizeBanner.txt 
     
-### 2.SpringBoot 入门-jdbcTemplate
+### 三.SpringBoot 入门-jdbcTemplate
 
 > 说明    
     
     使用Springboot 集成 jdbcTemplate 实现简单的增删改查 并使用注解事务保证数据提交与回滚
-         
+ 
+### 四.SpringBoot 入门-集成jpa
+ 
+ > 说明 
+    
+    springboot 使用jpa时间简单的增删改查操作。
+    其中包括两种方式 1.jpa自动生成查询   2. 使用@Query(value="")注解进行hql查询   

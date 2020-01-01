@@ -1,6 +1,8 @@
 package com.stu.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -14,6 +16,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "userInfo")
 public class UserInfo {
+    // Id标识主键 @GeneratedValue标识逐渐自增长
+    @Id
+    @GeneratedValue
     private Long id;
     private String name;
     private Integer age;

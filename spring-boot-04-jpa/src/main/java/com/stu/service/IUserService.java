@@ -1,5 +1,10 @@
 package com.stu.service;
 
+import com.stu.entity.UserInfo;
+import org.apache.catalina.LifecycleState;
+
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  *
@@ -9,4 +14,14 @@ package com.stu.service;
  * @To change this template use File | Settings | File Templates.
  */
 public interface IUserService {
+    UserInfo add(UserInfo user);
+
+    UserInfo update(UserInfo userInfo) throws Exception;
+
+    void del(Long id);
+
+    UserInfo findById(Long id);
+
+    List<UserInfo> fingByName(String name);
+
 }
