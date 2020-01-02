@@ -38,6 +38,12 @@
 > 说明    
     
     使用Springboot 集成 jdbcTemplate 实现简单的增删改查 并使用注解事务保证数据提交与回滚
+
+### 四.SpringBoot 入门-jdbcTemplate-data-source
+
+> 说明    
+    
+    使用Springboot 集成 jdbcTemplate 集成多个数据源
  
 ### 五.SpringBoot 入门-集成jpa
  

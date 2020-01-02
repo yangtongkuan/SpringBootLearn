@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.stu</groupId>
-    <artifactId>spring-boot-03-jdbc</artifactId>
+    <artifactId>spring-boot-04-jdbc-data-source</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-boot-03-jdbc</name>
+    <name>spring-boot-04-jdbc-data-source</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -23,6 +23,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
         <!-- 数据库连接驱动-->
         <dependency>
             <groupId>mysql</groupId>
