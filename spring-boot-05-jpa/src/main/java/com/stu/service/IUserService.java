@@ -22,6 +22,6 @@ public interface IUserService {
 
     UserInfo findById(Long id);
 
-    List<UserInfo> fingByName(String name);
+    List<UserInfo> fingByName(String name, int page, int size);
 
 }

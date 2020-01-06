@@ -2,11 +2,15 @@ package com.stu.service;
 
 import com.stu.dao.UserRepository;
 import com.stu.entity.UserInfo;
+import javafx.collections.transformation.SortedList;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -55,7 +59,13 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public List<UserInfo> fingByName(String name) {
-        return userRepository.findByName(name);
+    public List<UserInfo> fingByName(String name, int page, int size) {
+
+        // 同为升降序 字段为多个用此方法
+        Sort sort = new Sort(Sort.Direction.DESC, "age", "id");
+        // 多条件 升降序不同用此方法
+//        Sort sort = new Sort(Sort.Direction.DESC, "age").and(new Sort(Sort.Direction.ASC, "id"));
+        PageRequest pageRequest = new PageRequest(page - 1, size, sort);
+        return userRepository.findByName(name, pageRequest);
     }
 }

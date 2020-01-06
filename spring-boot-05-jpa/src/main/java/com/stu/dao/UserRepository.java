@@ -2,9 +2,14 @@ package com.stu.dao;
 
 import ch.qos.logback.classic.util.LoggerNameUtil;
 import com.stu.entity.UserInfo;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.function.LongToIntFunction;
@@ -22,8 +27,9 @@ public interface UserRepository extends JpaRepository<UserInfo, Long> {
     UserInfo getUserInfoById(Long id);
 
     // 使用hql 方式查询  也支持原始的sql查询  使用hql查询时 使用的是表对应的model 而不是表
-    @Query("FROM UserInfo where name = ?1")
-    List<UserInfo> findByName(String name);
+    @Query("FROM UserInfo where name like %:name%")
+    List<UserInfo> findByName(@Param("name") String name, Pageable request);
+
 
     // 方式1
     //    @Modifying

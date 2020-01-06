@@ -52,8 +52,7 @@ public class UserController {
     }
 
     @RequestMapping("/user/list")
-    public Object listOfName(@RequestParam String name) {
-        return userService.fingByName(name);
+    public Object listOfName(@RequestParam String name, Integer page, Integer size) {
+        return userService.fingByName(name, page, size);
     }
-
 }
