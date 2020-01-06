@@ -47,7 +47,7 @@
  
 ### 五.SpringBoot 入门-集成jpa
  
- > 说明 
+> 说明 
     
     springboot 使用jpa时间简单的增删改查操作。
     其中包括两种方式 1.jpa自动生成查询   2. 使用@Query(value="")注解进行hql查询   
@@ -60,7 +60,12 @@
  
 ### 七.SpringBoot 入门-集成mongodb
 
- > 说明 
+> 说明 
     
     springboot 使用mongodb 查询
+ 
+> 方式
+    
+    1. 使用mongodbTemplate
+    2. 继承MongoRepository接口    
  
