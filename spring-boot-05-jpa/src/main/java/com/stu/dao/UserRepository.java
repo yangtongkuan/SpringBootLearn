@@ -27,10 +27,16 @@ public interface UserRepository extends JpaRepository<UserInfo, Long> {
     UserInfo getUserInfoById(Long id);
 
     // 使用hql 方式查询  也支持原始的sql查询  使用hql查询时 使用的是表对应的model 而不是表
-    @Query("FROM UserInfo where name like %:name%")
-    List<UserInfo> findByName(@Param("name") String name, Pageable request);
+    @Query(value = "FROM UserInfo u WHERE u.name like %?1% ")
+    List<UserInfo> findByName(String name, Pageable request);
 
+    Page<UserInfo> findByNameLike(String name, Pageable request);
 
+    @Query(value = "select u FROM UserInfo u WHERE u.name like %?1% ",
+            countQuery = "SELECT count(u) FROM UserInfo u WHERE u.name like %?1% ",
+            nativeQuery = false
+    )
+    Page<UserInfo> findByNameLikeHql(String name,Pageable request);
     // 方式1
     //    @Modifying
 //    @Query(value = " delete from UserInfo  where id = ?1")

@@ -66,6 +66,8 @@ public class UserServiceImpl implements IUserService {
         // 多条件 升降序不同用此方法
 //        Sort sort = new Sort(Sort.Direction.DESC, "age").and(new Sort(Sort.Direction.ASC, "id"));
         PageRequest pageRequest = new PageRequest(page - 1, size, sort);
+        Page<UserInfo> pageIn = userRepository.findByNameLike("%" + name + "%", pageRequest);
+        System.out.println(pageIn.getContent());
         return userRepository.findByName(name, pageRequest);
     }
 }
