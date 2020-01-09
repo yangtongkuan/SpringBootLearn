@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -52,5 +51,12 @@ public class PersonService {
         personMapper.deleteOne(id);
     }
 
-
+    @Transactional
+    public void testTr(Long id) {
+        personMapper.deleteOne(id);
+        int i = 1 / 0;
+        Person p = new Person();
+        p.setAge(11).setLastName("test").setSex(Sex.WOMAN).setName("test");
+        personMapper.insertOne(p);
+    }
 }
