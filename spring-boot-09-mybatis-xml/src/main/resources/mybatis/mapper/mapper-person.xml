@@ -31,5 +31,32 @@
         </where>
     </select>
 
+    <select id="getOne" resultMap="baseResultMap">
+        SELECT
+        <include refid="base_column_set"/>
+        FROM t_person
+        where id = #{id}
+    </select>
+
+    <insert id="insertOne" parameterType="com.stu.entity.Person">
+        insert  into
+          t_person(name,age,sex,last_name)
+        values (#{name},#{age},#{sex},#{lastName})
+    </insert>
+
+    <update id="updateOne" parameterType="com.stu.entity.Person">
+        update
+        t_person
+        set name = #{name}
+        <if test="age!=null and age > 0">
+            ,age = #{age}
+        </if>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteOne">
+        delete from t_person
+        where id = #{id}
+    </delete>
 
 </mapper>

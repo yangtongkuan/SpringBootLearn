@@ -1,8 +1,10 @@
 package com.stu.controller;
 
+import com.stu.entity.Person;
 import com.stu.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -31,6 +33,29 @@ public class PersonController {
     @RequestMapping("/person/list/by-name")
     public Object searchByName(String name) {
         return userService.searchByName(name);
+    }
+
+    @RequestMapping("/person/get")
+    public Object getOne(Long id) {
+        return userService.getOne(id);
+    }
+
+    @RequestMapping("/person/add")
+    public Object addOne(Person person) {
+        userService.addOne(person);
+        return person;
+    }
+
+    @RequestMapping("/person/update")
+    public Object updateOne(Person person) {
+        userService.updateOne(person);
+        return userService.getOne(person.getId());
+    }
+
+    @RequestMapping("/person/del")
+    public Object deleteOne(Long id) {
+        userService.delete(id);
+        return userService.queryAll();
     }
 
 }

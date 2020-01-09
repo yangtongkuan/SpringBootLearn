@@ -19,4 +19,12 @@ public interface PersonMapper {
     List<Person> queryAll();
 
     List<Person> searchByNameLike(@Param("name") String name);
+
+    Person getOne(Long id);
+
+    void insertOne(Person p);
+
+    void updateOne(Person p);
+
+    void deleteOne(Long id);
 }

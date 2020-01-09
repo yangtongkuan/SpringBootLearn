@@ -25,8 +25,30 @@ public class PersonService {
         return personMapper.queryAll();
     }
 
+    /**
+     * @param name
+     * @return
+     * @desc 通过名字模糊查询
+     */
     public List<Person> searchByName(String name) {
         return personMapper.searchByNameLike(name);
     }
+
+    public Person getOne(Long id) {
+        return personMapper.getOne(id);
+    }
+
+    public void addOne(Person p) {
+        personMapper.insertOne(p);
+    }
+
+    public void updateOne(Person p) {
+        personMapper.updateOne(p);
+    }
+
+    public void delete(Long id) {
+        personMapper.deleteOne(id);
+    }
+
 
 }
