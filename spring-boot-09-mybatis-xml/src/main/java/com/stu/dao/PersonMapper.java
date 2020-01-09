@@ -3,6 +3,7 @@ package com.stu.dao;
 import com.stu.entity.Person;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ import java.util.List;
  * @To change this template use File | Settings | File Templates.
  */
 @Mapper
+@Repository
 public interface PersonMapper {
 
     List<Person> queryAll();
