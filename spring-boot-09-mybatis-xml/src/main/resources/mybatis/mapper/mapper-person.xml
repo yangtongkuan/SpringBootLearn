@@ -24,7 +24,7 @@
         <include refid="base_column_set"/>
         from t_person
         <where>
-            <!-- 会把 where的第一个and 自动去除 -->
+            <!-- mybatis 会把 where的第一个and 自动去除 -->
             <if test="name!=null and name!=''">
                 and name like CONCAT('%',#{name},'%' )
             </if>
