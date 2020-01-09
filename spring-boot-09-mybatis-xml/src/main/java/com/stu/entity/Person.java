@@ -10,19 +10,19 @@ import java.io.Serializable;
  * @To change this template use File | Settings | File Templates.
  */
 
-public class UserInfo implements Serializable {
+public class Person implements Serializable {
 
     private Long id;
     private String name;
     private String lastName;
-    private String sex;
+    private Sex sex;
     private Integer age;
 
     public Long getId() {
         return id;
     }
 
-    public UserInfo setId(Long id) {
+    public Person setId(Long id) {
         this.id = id;
         return this;
     }
@@ -31,7 +31,7 @@ public class UserInfo implements Serializable {
         return name;
     }
 
-    public UserInfo setName(String name) {
+    public Person setName(String name) {
         this.name = name;
         return this;
     }
@@ -40,16 +40,16 @@ public class UserInfo implements Serializable {
         return lastName;
     }
 
-    public UserInfo setLastName(String lastName) {
+    public Person setLastName(String lastName) {
         this.lastName = lastName;
         return this;
     }
 
-    public String getSex() {
+    public Sex getSex() {
         return sex;
     }
 
-    public UserInfo setSex(String sex) {
+    public Person setSex(Sex sex) {
         this.sex = sex;
         return this;
     }
@@ -58,7 +58,7 @@ public class UserInfo implements Serializable {
         return age;
     }
 
-    public UserInfo setAge(Integer age) {
+    public Person setAge(Integer age) {
         this.age = age;
         return this;
     }

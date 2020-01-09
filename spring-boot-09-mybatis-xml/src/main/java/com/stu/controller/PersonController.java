@@ -1,6 +1,6 @@
 package com.stu.controller;
 
-import com.stu.service.UserService;
+import com.stu.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,13 +13,24 @@ import org.springframework.web.bind.annotation.RestController;
  * @To change this template use File | Settings | File Templates.
  */
 @RestController
-public class UserController {
+public class PersonController {
 
     @Autowired
-    private UserService userService;
+    private PersonService userService;
 
-    @RequestMapping("/user/list")
+    /**
+     * 查询所有的人
+     *
+     * @return
+     */
+    @RequestMapping("/person/list")
     public Object get() {
         return userService.queryAll();
     }
+
+    @RequestMapping("/person/list/by-name")
+    public Object searchByName(String name) {
+        return userService.searchByName(name);
+    }
+
 }

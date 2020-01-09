@@ -1,7 +1,7 @@
 package com.stu.service;
 
-import com.stu.dao.UserMapper;
-import com.stu.entity.UserInfo;
+import com.stu.dao.PersonMapper;
+import com.stu.entity.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +16,17 @@ import java.util.List;
  * @To change this template use File | Settings | File Templates.
  */
 @Service
-public class UserService {
+public class PersonService {
 
-    @Resource
-    private UserMapper userMapper;
+    @Autowired
+    private PersonMapper personMapper;
 
-    public List<UserInfo> queryAll() {
-        return userMapper.queryAll();
+    public List<Person> queryAll() {
+        return personMapper.queryAll();
     }
+
+    public List<Person> searchByName(String name) {
+        return personMapper.searchByNameLike(name);
+    }
+
 }

@@ -1,7 +1,8 @@
 package com.stu.dao;
 
-import com.stu.entity.UserInfo;
+import com.stu.entity.Person;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -13,7 +14,9 @@ import java.util.List;
  * @To change this template use File | Settings | File Templates.
  */
 @Mapper
-public interface UserMapper {
+public interface PersonMapper {
 
-    List<UserInfo> queryAll();
+    List<Person> queryAll();
+
+    List<Person> searchByNameLike(@Param("name") String name);
 }

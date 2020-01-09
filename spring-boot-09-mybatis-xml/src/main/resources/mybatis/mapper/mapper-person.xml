@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.stu.dao.UserMapper">
-    <resultMap id="baseResultMap" type="com.stu.entity.UserInfo">
+<mapper namespace="com.stu.dao.PersonMapper">
+    <resultMap id="baseResultMap" type="com.stu.entity.Person">
         <id column="id" property="id" jdbcType="BIGINT"></id>
         <result column="name" property="name" jdbcType="VARCHAR"></result>
-        <result column="sex" property="sex" jdbcType="VARCHAR"></result>
+        <result column="sex" property="sex" javaType="com.stu.entity.Sex"></result>
         <result column="last_name" property="lastName"></result>
         <result column="age" property="age"></result>
     </resultMap>
@@ -16,7 +16,20 @@
     <select id="queryAll" resultMap="baseResultMap">
         select
         <include refid="base_column_set"/>
-        from t_user
+        from t_person
     </select>
+
+    <select id="searchByNameLike" resultMap="baseResultMap">
+        select
+        <include refid="base_column_set"/>
+        from t_person
+        <where>
+            <!-- 会把 where的第一个and 自动去除 -->
+            <if test="name!=null and name!=''">
+                and name like CONCAT('%',#{name},'%' )
+            </if>
+        </where>
+    </select>
+
 
 </mapper>
