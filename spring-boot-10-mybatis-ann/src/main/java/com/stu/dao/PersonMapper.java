@@ -36,8 +36,24 @@ public interface PersonMapper {
 
     // 使用provider 动态构建 sql
     @UpdateProvider(type = PersonMapperProvider.class, method = "getUpdateOneSql")
-    void updateOne(Person p);
+    int updateOne(Person p);
 
     @Delete("delete from t_person where id = #{id}")
     void deleteOne(Long id);
+
+    // ---------------- mybatis provider -----------------
+
+    // 增加
+    @InsertProvider(type = PersonMapperProvider.class, method = "getInsertSql")
+    int insert(Person person);
+
+    // 删除
+    @DeleteProvider(type = PersonMapperProvider.class, method = "getDelSql")
+    int del(Long id);
+
+    //查询
+    @SelectProvider(type = PersonMapperProvider.class, method = "getSelectSql")
+    List<Person> search(@Param("name") String name, @Param("age") Integer age);
+
+
 }

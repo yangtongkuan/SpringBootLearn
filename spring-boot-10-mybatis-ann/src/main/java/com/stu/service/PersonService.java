@@ -32,7 +32,10 @@ public class PersonService {
      * @desc 通过名字模糊查询
      */
     public List<Person> searchByName(String name) {
-        return personMapper.searchByNameLike(name);
+        // 方式 1
+        //        return personMapper.searchByNameLike(name);
+        // 方式 2  使用mybatis provider 注解
+        return personMapper.search(name, 10);
     }
 
     public Person getOne(Long id) {
@@ -40,15 +43,21 @@ public class PersonService {
     }
 
     public void addOne(Person p) {
-        personMapper.insertOne(p);
+//        personMapper.insertOne(p);
+        System.out.println(personMapper.insert(p));
     }
 
     public void updateOne(Person p) {
-        personMapper.updateOne(p);
+        int result = personMapper.updateOne(p);
+        System.out.println("更新条数--->" + result);
     }
 
     public void delete(Long id) {
-        personMapper.deleteOne(id);
+        // 方式 1 注解
+//        personMapper.deleteOne(id);
+        // 方式 2 provider
+        int result = personMapper.del(id);
+        System.out.println("删除--->" + result);
     }
 
     @Transactional
