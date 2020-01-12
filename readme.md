@@ -71,10 +71,16 @@
 
 ### 八.SpringBoot 入门-集成mongodb querydsl 查询 
 
-### 九.SpringBoot 入门-集成 mybatis 
+### 九.SpringBoot 入门-集成 mybatis -xml版
 
 > 说明
     
     使用springboot 集成maybatis 实现简单的增删改查
  
+ ### 十.SpringBoot 入门-集成 mybatis -注解版
  
+ > 说明
+     
+    使用注解实现增删改查
+    以及使用mybatis的provider:@SelectProvider   @InsertProvider @DeleteProvider  @UpdateProvider 
+  
