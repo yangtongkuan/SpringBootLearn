@@ -64,6 +64,12 @@ public class PersonMapperProvider {
             {
                 SELECT("id,name,last_name as lastName,age,sex");
                 FROM("t_person");
+//                if (map.get("name") != null && map.get("name") != "") {
+//                    WHERE("name like CONCAT('%',#{name},'%')");
+//                }
+//                if (map.get("age") != null && Integer.parseInt(map.get("age").toString()) > 0) {
+//                    WHERE("age > #{age}");
+//                }
                 if (name != null && name != "") {
                     WHERE("name like CONCAT('%',#{name},'%')");
                 }
