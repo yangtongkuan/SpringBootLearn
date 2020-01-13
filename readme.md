@@ -77,10 +77,19 @@
     
     使用springboot 集成maybatis 实现简单的增删改查
  
- ### 十.SpringBoot 入门-集成 mybatis -注解版
+### 十.SpringBoot 入门-集成 mybatis -注解版
  
- > 说明
-     
+> 说明
+ 
     使用注解实现增删改查
     以及使用mybatis的provider:@SelectProvider   @InsertProvider @DeleteProvider  @UpdateProvider 
-  
+    
+### 十一.SpringBoot 入门 - 使用Scheduled 定时任务    
+
+> 说明
+    
+    使用@Scheduled 实现定时任务
+    fixedRate: 上一次执行开始时间到本次执行的开始时间-时间差
+    fixedDelay: 上一次执行结束时间到本次执行的开始时间-时间差
+    initialDelay: 第一执行延迟多少毫米后执行
+    cron: 表达式 */5 * * * * *  ---> 秒-分-时-日-月-年
