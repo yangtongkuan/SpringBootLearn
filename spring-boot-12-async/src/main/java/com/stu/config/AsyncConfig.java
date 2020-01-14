@@ -18,23 +18,19 @@ public class AsyncConfig {
      *   默认情况下，在创建了线程池后，线程池中的线程数为0，当有任务来之后，就会创建一个线程去执行任务，
      *	当线程池中的线程数目达到corePoolSize后，就会把到达的任务放到缓存队列当中；
      *  当队列满了，就继续创建线程，当线程数量大于等于maxPoolSize后，开始使用拒绝策略拒绝
-     *
-     *
      *  注意事项：
      * 如下方式会使@Async失效
-     *
-     *
      * 一、异步方法使用static修饰
      * 二、异步类没有使用@Component注解（或其他注解）导致spring无法扫描到异步类
      * 三、异步方法不能与被调用的异步方法在同一个类中
      * 四、类中需要使用@Autowired或@Resource等注解自动注入，不能自己手动new对象
      * 五、如果使用SpringBoot框架必须在启动类中增加@EnableAsync注解
-     *
      */
 
     /**
      * @return
      * @desc: 配置异步任务线程池
+     * @de : 默认使用 --> springboot 默认是实现了 SimpleAsyncTaskExecutor 的线程池
      */
     @Bean("taskExecutor")
     public Executor taskExecutor() {
