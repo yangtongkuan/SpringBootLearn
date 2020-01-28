@@ -20,15 +20,6 @@ public class BackController {
     @RequestMapping("/back/info")
     public Object backInfo() {
         Long startTime = System.currentTimeMillis();
-        for (int i = 0; i < 10000; i++) {
-            log.trace("这是------>trance");
-            log.debug("这是------>debug");
-            log.info("这是------>info");
-            log.warn("这是------>warn");
-            log.error("这是------>error");
-        }
-        long endTime = System.currentTimeMillis();
-        log.info("第一时间段为----:{}毫秒", (endTime - startTime));
         for (int i = 0; i < 100000; i++) {
             log.trace("这是------>trance");
             log.debug("这是------>debug");
@@ -37,8 +28,9 @@ public class BackController {
             log.error("这是------>error");
         }
         long endTime2 = System.currentTimeMillis();
-        //第二段时间实际打打印时间为45963毫秒  可以看出 大量的io操作 会导致程序性能降低
-        log.info("第二时间段为----:{}毫秒", (endTime2 - endTime));
+        // 在没有使用异步日志数据的时候,第二段时间实际打打印时间为45963毫秒  可以看出 大量的io操作 会导致程序性能降低
+        // 使用异步日志数据后,第二段时间实际打打印时间为3584毫秒  是原先的30倍左右
+        log.info("第二时间段为----:{}毫秒", (endTime2 - startTime));
         return "ok";
     }
 }

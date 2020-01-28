@@ -6,12 +6,18 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
 -->
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
     <!-- 定义日志的根目录 -->
-    <!--<property name="LOG_HOME" value="/app/log" />-->
-    <property name="LOG_HOME" value="F:\\logs"/>
+    <springProperty scope="context" name="LOG_HOME" source="logging.path"/>
+    <!--<property name="LOG_HOME" value="F:\\logs"/>-->
     <!-- 定义日志文件名称 -->
-    <property name="appName" value="logback"></property>
+    <!--<property name="appName" value="logback"></property>-->
+    <springProperty scope="context" name="appName" source="spring.application.name"/>
+
+    <!-- 定义输出格式 -->
+    <!--<property name="logging.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"></property>-->
+    <springProperty scope="context" name="logging.pattern" source="logging.pattern.file"/>
     <!-- 定义文件名最大天数 -->
-    <property name="log.maxHistory" value="30"></property>
+    <!--<property name="log.maxHistory" value="30"></property>-->
+    <springProperty scope="context" name="log.maxHistory" source="logging.maxHistory"/>
     <!-- ch.qos.logback.core.ConsoleAppender 表示控制台输出 -->
     <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
         <!--
@@ -62,42 +68,45 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
         </rollingPolicy>
         <!-- 日志输出格式： -->
         <layout class="ch.qos.logback.classic.PatternLayout">
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [ %thread ] - [ %-5level ] [ %logger{50} : %line ] - %msg%n</pattern>
+            <!--<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [ %thread ] - [ %-5level ] [ %logger{50} : %line ] - %msg%n</pattern>-->
+            <pattern>${logging.pattern}</pattern>
         </layout>
     </appender>
-    <!-- 2.2 level为 INFO 日志，时间滚动输出  -->
-    <appender name="infoAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <!-- 正在记录的日志文档的路径及文档名 -->
-        <file>${LOG_HOME}/web_info.log</file>
-        <!--日志文档输出格式-->
-        <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
-            <charset>UTF-8</charset>
-        </encoder>
-        <!-- 日志记录器的滚动策略，按日期，按大小记录 -->
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!-- 每天日志归档路径以及格式 -->
-            <fileNamePattern>${LOG_HOME}/${appName}-web-info-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
-            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <maxFileSize>100MB</maxFileSize>
-            </timeBasedFileNamingAndTriggeringPolicy>
-            <!--日志文档保留天数-->
-            <maxHistory>${log.maxHistory}</maxHistory>
-        </rollingPolicy>
-        <!-- 此日志文档只记录info级别的 -->
-        <filter class="ch.qos.logback.classic.filter.LevelFilter">
-            <level>info</level>
-            <onMatch>ACCEPT</onMatch>s
-            <onMismatch>DENY</onMismatch>
-        </filter>
-    </appender>
+    <!--&lt;!&ndash; 2.2 level为 INFO 日志，时间滚动输出  &ndash;&gt;-->
+    <!--<appender name="infoAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+        <!--&lt;!&ndash; 正在记录的日志文档的路径及文档名 &ndash;&gt;-->
+        <!--<file>${LOG_HOME}/web_info.log</file>-->
+        <!--&lt;!&ndash;日志文档输出格式&ndash;&gt;-->
+        <!--<encoder>-->
+            <!--&lt;!&ndash;<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>&ndash;&gt;-->
+            <!--<pattern>${logging.pattern}</pattern>-->
+            <!--<charset>UTF-8</charset>-->
+        <!--</encoder>-->
+        <!--&lt;!&ndash; 日志记录器的滚动策略，按日期，按大小记录 &ndash;&gt;-->
+        <!--<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+            <!--&lt;!&ndash; 每天日志归档路径以及格式 &ndash;&gt;-->
+            <!--<fileNamePattern>${LOG_HOME}/${appName}-web-info-%d{yyyy-MM-dd}.%i.log</fileNamePattern>-->
+            <!--<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">-->
+                <!--<maxFileSize>100MB</maxFileSize>-->
+            <!--</timeBasedFileNamingAndTriggeringPolicy>-->
+            <!--&lt;!&ndash;日志文档保留天数&ndash;&gt;-->
+            <!--<maxHistory>${log.maxHistory}</maxHistory>-->
+        <!--</rollingPolicy>-->
+        <!--&lt;!&ndash; 此日志文档只记录info级别的 &ndash;&gt;-->
+        <!--<filter class="ch.qos.logback.classic.filter.LevelFilter">-->
+            <!--<level>info</level>-->
+            <!--<onMatch>ACCEPT</onMatch>s-->
+            <!--<onMismatch>DENY</onMismatch>-->
+        <!--</filter>-->
+    <!--</appender>-->
     <!-- 2.3 level为 ERROR 日志，时间滚动输出  -->
     <appender name="errorAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!-- 正在记录的日志文档的路径及文档名 -->
-        <file>${LOG_HOME}/web_error.log</file>
+        <file>${LOG_HOME}/${appName}_error.log</file>
         <!--日志文档输出格式-->
         <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+            <!--<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>-->
+            <pattern>${logging.pattern}</pattern>
             <charset>UTF-8</charset> <!-- 此处设置字符集 -->
         </encoder>
         <!-- 日志记录器的滚动策略，按日期，按大小记录 -->
@@ -136,11 +145,44 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
     root与logger是父子关系，没有特别定义则默认为root，任何一个类只会和一个logger对应，
     要么是定义的logger，要么是root，判断的关键在于找到这个logger，然后判断这个logger的appender和level。 
     -->
-    <root level="info">
+    <!-- 异步输出所有的日志 -->
+    <appender name="asyncStdoutAppender" class="ch.qos.logback.classic.AsyncAppender">
+        <!-- 不丢失日志.默认的,如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 -->
+        <discardingThreshold>0</discardingThreshold>
+        <!-- 更改默认的队列的深度,该值会影响性能.默认值为256 -->
+        <queueSize>256</queueSize>
+        <!-- 添加附加的appender,最多只能添加一个 -->
         <appender-ref ref="stdout"/>
+    </appender>
+    <!-- 异步记录所有的日志-->
+    <appender name="asyncLogAppender" class="ch.qos.logback.classic.AsyncAppender">
+        <!-- 不丢失日志.默认的,如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 -->
+        <discardingThreshold>0</discardingThreshold>
+        <!-- 更改默认的队列的深度,该值会影响性能.默认值为256 -->
+        <queueSize>256</queueSize>
+        <!-- 添加附加的appender,最多只能添加一个 -->
         <appender-ref ref="logAppender"/>
-        <appender-ref ref="infoAppender"/>
+    </appender>
+    <!-- 异步记录所有的日志-->
+    <appender name="asyncErrorAppender" class="ch.qos.logback.classic.AsyncAppender">
+        <!-- 不丢失日志.默认的,如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 -->
+        <discardingThreshold>0</discardingThreshold>
+        <!-- 更改默认的队列的深度,该值会影响性能.默认值为256 -->
+        <queueSize>256</queueSize>
+        <!-- 添加附加的appender,最多只能添加一个 -->
         <appender-ref ref="errorAppender"/>
-
+    </appender>
+    <!-- 非异步日志 -->
+    <!--<root level="info">-->
+    <!--<appender-ref ref="stdout"/>-->
+    <!--<appender-ref ref="logAppender"/>-->
+    <!--<appender-ref ref="infoAppender"/>-->
+    <!--<appender-ref ref="errorAppender"/>-->
+    <!--</root>-->
+    <!-- 异步日志 -->
+    <root level="info">
+        <appender-ref ref="asyncStdoutAppender"/>
+        <appender-ref ref="asyncLogAppender"/>
+        <appender-ref ref="asyncErrorAppender"/>
     </root>
 </configuration> 
