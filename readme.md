@@ -132,4 +132,8 @@
      * 5. AmqpAdmin:RabbitMQ系统管理功能组件
      *      AmqpAdmin：创建和删除queue , exchange , binding
      * 6. @EnableRabbit + @RabbitListener 监听消息队列中的消息内容
-        
+
+### 十六.SpringBoot 入门 - 集成activemq消息中间件
+
+> 说明      
+   
