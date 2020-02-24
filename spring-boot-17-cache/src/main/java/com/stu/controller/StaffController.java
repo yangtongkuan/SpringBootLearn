@@ -1,10 +1,9 @@
 package com.stu.controller;
 
+import com.stu.bean.StaffInfo;
 import com.stu.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -23,6 +22,25 @@ public class StaffController {
     @GetMapping("/staff/{id}")
     public Object getStaff(@PathVariable("id") Long id) {
         return staffService.getStaff(id);
+    }
+
+    @PostMapping("/staff/update")
+    //@RequestBody 当传入的是json数据时  使用@RequestBody
+    public Object updateStaff(StaffInfo info) {
+        System.out.println(info.toString());
+        return staffService.updateStaff(info);
+    }
+
+    // del
+    @PostMapping("/staff/del")
+    public Object delStaff(@RequestParam Long id) {
+        staffService.delStaff(id);
+        return "success";
+    }
+
+    @PostMapping("/staff/search/last_name")
+    public Object searchLastName(@RequestParam String lastName) {
+        return staffService.searchLastName(lastName);
     }
 
 
