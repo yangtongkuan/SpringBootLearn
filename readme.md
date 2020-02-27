@@ -136,4 +136,15 @@
 ### 十六.SpringBoot 入门 - 集成activemq消息中间件
 
 > 说明      
-   
+  
+### 十七.SpringBoot 入门 - 集成activemq消息中间件
+
+> 说明     
+
+### 八.SpringBoot 入门 - 集成swagger2文档插件
+
+> 说明   
+    
+    使用swagger2生成文档 简化了前后端分离协作性，注意生产环境已经不能启用swagger2 
+    1. 生成html文件需要启动很多组件
+    2. 线上环境使用swagger2容易造成接口文档暴露
