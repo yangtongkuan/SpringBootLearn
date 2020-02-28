@@ -141,10 +141,17 @@
 
 > 说明     
 
-### 八.SpringBoot 入门 - 集成swagger2文档插件
+### 十八.SpringBoot 入门 - 集成swagger2文档插件
 
 > 说明   
     
     使用swagger2生成文档 简化了前后端分离协作性，注意生产环境已经不能启用swagger2 
     1. 生成html文件需要启动很多组件
     2. 线上环境使用swagger2容易造成接口文档暴露
+
+### 十九.SpringBoot 入门 - 集成knife4j接口文档插件
+
+> 说明   
+    
+    swagger2的ui性能太差劲，对于中国开发者很不友好
+    knif4j增加ui界面功能，新增接口文档排序搜索等功能
