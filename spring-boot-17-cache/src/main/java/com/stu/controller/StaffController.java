@@ -3,6 +3,7 @@ package com.stu.controller;
 import com.stu.bean.StaffInfo;
 import com.stu.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -17,6 +18,14 @@ public class StaffController {
 
     @Autowired
     private StaffService staffService;
+
+    @Autowired
+    private RedisTemplate redisTemplate;
+
+    @GetMapping("/staff/test")
+    public Object get() {
+        return redisTemplate.opsForValue().get("staff.staff:1");
+    }
 
     // 查询
     @GetMapping("/staff/{id}")

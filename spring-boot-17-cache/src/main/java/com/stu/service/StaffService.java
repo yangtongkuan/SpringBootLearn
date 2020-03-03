@@ -23,7 +23,7 @@ import javax.annotation.Resource;
  * 如果相同属性同时存在时,个例会覆盖公共的属性
  */
 @Service
-@CacheConfig(cacheNames = "staff")
+//@CacheConfig(cacheNames = "staff")
 public class StaffService {
 
     // 将自身注入进来 解决查询方法不查询缓存的问题
@@ -102,7 +102,7 @@ public class StaffService {
      * unless 条件过滤缓存一般用来对结果的筛选
      * sync：是否使用异步模式
      */
-    @Cacheable(value = "staff", key = "#id", unless = "#result==null")
+    @Cacheable(value = "staff", key = "#id.toString()", unless = "#result==null")
     public StaffInfo getStaff(Long id) {
         System.out.println("查询id为:" + id);
         StaffInfo info = staffMapper.getStaff(id);
