@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     public UserEntity save(UserEntity userEntity) {
-
         return userEntity;
     }
 }
