@@ -1,5 +1,6 @@
 package com.stu;
 
+import com.github.xiaoymin.swaggerbootstrapui.annotations.EnableSwaggerBootstrapUI;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -27,6 +28,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *          * public @interface ListValue {
  */
 @SpringBootApplication
+@EnableSwaggerBootstrapUI
 public class SpringBoot20ValidApplication {
 
     public static void main(String[] args) {
